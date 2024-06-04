@@ -2,6 +2,8 @@ import string
 
 
 class UsernameContainsIllegalCharacter(Exception):
+    """exception for times that username contains a char that is not an uppercase ,a lowercase, a number or
+    an underscore"""
     def __init__(self,char,index):
         self._char = char
         self._index = index
@@ -10,6 +12,7 @@ class UsernameContainsIllegalCharacter(Exception):
         return f"Username contains an Illegal Character '{self._char}' at index {self._index}"
 
 class UsernameTooShort(Exception):
+    """exception for times that username is under 3 chars long"""
     def __init__(self,arg):
         self._arg = arg
 
@@ -17,6 +20,7 @@ class UsernameTooShort(Exception):
         return "Username too short"
 
 class UsernameTooLong(Exception):
+    """exception for times that username is more than 16 chars long"""
     def __init__(self,arg):
         self._arg = arg
 
@@ -24,6 +28,8 @@ class UsernameTooLong(Exception):
         return "Username too long"
 
 class PasswordMissingCharacter(Exception):
+    """exception for times that the password not contains at least - one uppercase , one lowercase
+     ,one number and one string.punctuation"""
     def __init__(self,arg):
         self._arg = arg
 
@@ -32,6 +38,7 @@ class PasswordMissingCharacter(Exception):
 
 
 class PasswordMissingUppercase(PasswordMissingCharacter):
+    """exception for times that password missing uppercase, expand PasswordMissingCharacter exception"""
     def __init__(self, arg):
         self._arg = arg
 
@@ -39,6 +46,7 @@ class PasswordMissingUppercase(PasswordMissingCharacter):
         return super().__str__() + " (Uppercase)"
 
 class PasswordMissingLowercase(PasswordMissingCharacter):
+    """exception for times that password missing lowercase, expand PasswordMissingCharacter exception"""
     def __init__(self, arg):
         self._arg = arg
 
@@ -46,6 +54,7 @@ class PasswordMissingLowercase(PasswordMissingCharacter):
         return super().__str__() + " (Lowercase)"
 
 class PasswordMissingDigit(PasswordMissingCharacter):
+    """exception for times that password missing digit, expand PasswordMissingCharacter exception"""
     def __init__(self, arg):
         self._arg = arg
 
@@ -53,6 +62,7 @@ class PasswordMissingDigit(PasswordMissingCharacter):
         return super().__str__() + " (Digit)"
 
 class PasswordMissingSpecial(PasswordMissingCharacter):
+    """exception for times that password missing special character, expand PasswordMissingCharacter exception"""
     def __init__(self, arg):
         self._arg = arg
 
@@ -60,6 +70,7 @@ class PasswordMissingSpecial(PasswordMissingCharacter):
         return super().__str__() + " (Special)"
 
 class PasswordTooShort(Exception):
+    """exception for times that the password is under 8 chars long"""
     def __init__(self,arg):
         self._arg = arg
 
@@ -67,6 +78,7 @@ class PasswordTooShort(Exception):
         return "Password too short"
 
 class PasswordTooLong(Exception):
+    """exception for times that the password is longer than 40 chars"""
     def __init__(self,arg):
         self._arg = arg
 
@@ -74,6 +86,7 @@ class PasswordTooLong(Exception):
         return "Password too long"
 
 def pass_check(password):
+    """a function that I add for convenience, returns for a password which char is it missing"""
     upper = False
     lower = False
     number = False
@@ -97,6 +110,8 @@ def pass_check(password):
         return "punctuation"
 
 def check_input(username, password):
+    """receives two parameters of type string: username and password. The function prints "OK" if the username and password are correct,
+        If the username or password (or both) do not meet the defined conditions - throw the suitable exception"""
     try:
         if len(username) < 3:
             raise UsernameTooShort(len(username))
@@ -126,6 +141,8 @@ def check_input(username, password):
 
 
 def main():
+    """3."""
+    print("3.")
     check_input("1", "2")
     check_input("0123456789ABCDEFG", "2")
     check_input("A_a1.", "12345678")
@@ -136,13 +153,16 @@ def main():
     check_input("A_1", "ABCDEFGhijklmnop")
     check_input("A_1", "4BCD3F6h1jk1mn0p")
     check_input("A_1", "4BCD3F6.1jk1mn0p")
-
+    """4."""
+    print("4.")
     username = input("please enter your username: ")
     password = input("please enter your password: ")
     check_input(username,password)
-
+    """5. 1."""
+    print("5.1.")
     check_input("A_a1.", "12345678")
-
+    """5. 2."""
+    print("5.2.")
     check_input("A_1", "abcdefghijklmnop")
     check_input("A_1", "ABCDEFGHIJLKMNOP")
     check_input("A_1", "ABCDEFGhijklmnop")
