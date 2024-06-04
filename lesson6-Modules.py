@@ -49,9 +49,11 @@ second = (
 def main():
     img = Image.open(IMAGE_PATH,'r')
     draw = ImageDraw.Draw(img)
+    """iterate through the first list and draw red lines between the dots"""
     for i in range(0, len(first)-2, 2):
         print(str(first[i]) + " " + str(first[i+1]))
         draw.line([first[i], first[i + 1], first[i+2], first[i + 3]], fill='red', width=3)
+        """iterate through the second list and draw red lines between the dots"""
     for j in range(0, len(second) - 2, 2):
         print(str(second[j]) + " " + str(second[j + 1]))
         draw.line([second[j], second[j + 1], second[j + 2], second[j + 3]], fill='red', width=3)
